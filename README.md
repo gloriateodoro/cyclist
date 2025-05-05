@@ -20,6 +20,9 @@
 - [Jest](https://jestjs.io/) + [Testing Library](https://testing-library.com/docs/react-native-testing-library/intro/)
 
 ## 📸 Screenshots
+| Tela Inicial | Explorar Eventos | Novo Treino |
+|--------------|------------------|-------------|
+| <img src="docs/screenshots/home.png" width="200"> | <img src="docs/screenshots/explore.png" width="200"> | <img src="docs/screenshots/new-training.png" width="200"> |
 
 ## 🚀 Como rodar
 ```bash
