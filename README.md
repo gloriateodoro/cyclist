@@ -15,7 +15,6 @@
 - [React Native](https://reactnative.dev/)
 - [Expo](https://expo.dev/)
 - [React Navigation](https://reactnavigation.org/)
-- [Styled-components](https://styled-components.com/)
 - [AsyncStorage](https://docs.expo.dev/versions/latest/sdk/async-storage/)
 - [Jest](https://jestjs.io/) + [Testing Library](https://testing-library.com/docs/react-native-testing-library/intro/)
 
