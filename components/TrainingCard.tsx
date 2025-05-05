@@ -1,4 +1,4 @@
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Platform } from 'react-native';
 import { ThemedText } from './ThemedText';
 import { ThemedView } from './ThemedView';
 
@@ -48,6 +48,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    ...Platform.select({
+      web: {
+        width: '30%',
+        minWidth: 300,
+        maxWidth: 400,
+      },
+      default: {
+        width: '100%',
+      },
+    }),
   },
   header: {
     flexDirection: 'row',

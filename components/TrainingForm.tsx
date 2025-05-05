@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, TextInput, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, TextInput, View, TouchableOpacity, Platform } from 'react-native';
 import { ThemedText } from './ThemedText';
 import { ThemedView } from './ThemedView';
 import { useRouter } from 'expo-router';
@@ -50,7 +50,7 @@ export function TrainingForm({ onSubmit }: TrainingFormProps) {
   return (
     <ThemedView style={styles.container}>
       <View style={styles.header}>
-        <ThemedText type="title" style={styles.title}>Novo Treino</ThemedText>
+        <ThemedText type="title" style={styles.title}>Novo Pedal</ThemedText>
         <TouchableOpacity onPress={handleClose} style={styles.closeButton}>
           <ThemedText style={styles.closeButtonText}>X</ThemedText>
         </TouchableOpacity>
@@ -112,6 +112,13 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     flex: 1,
+    ...Platform.select({
+      web: {
+        maxWidth: 600,
+        marginHorizontal: 'auto',
+        width: '100%',
+      },
+    }),
   },
   header: {
     flexDirection: 'row',

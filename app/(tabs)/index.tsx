@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Platform, ScrollView, Alert } from 'react-native';
+import { Image, StyleSheet, Platform, ScrollView, Alert, View } from 'react-native';
 import { useRouter, useFocusEffect } from 'expo-router';
 import { useEffect, useState, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Bicycle } from '@/components/Bicycle';
 import { AddTrainingButton } from '@/components/AddTrainingButton';
 import { TrainingCard } from '@/components/TrainingCard';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
+import { ParallaxScrollView } from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
@@ -83,68 +83,96 @@ export default function HomeScreen() {
           style={styles.headerImage}
         />
       }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Meu Pedal</ThemedText>
-        <Bicycle />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Aqui você pode registrar seus pedais de forma rápida e fácil, sem precisar de internet.</ThemedText>
-        <ThemedText>Acompanhe sua evolução e veja o quanto você já pedalou!</ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Comece agora:</ThemedText>
-        <AddTrainingButton onPress={handleAddTraining} />
-      </ThemedView>
-
-      {trainings.length > 0 && (
-        <ThemedView style={styles.trainingsContainer}>
-          <ThemedText type="subtitle" style={styles.trainingsTitle}>Seus Treinos</ThemedText>
-          <ScrollView style={styles.trainingsList}>
-            {trainings.map((training, index) => (
-              <TrainingCard
-                key={index}
-                date={training.date}
-                distance={training.distance}
-                time={training.time}
-                notes={training.notes}
-                onDelete={() => handleDeleteTraining(index)}
-              />
-            ))}
-          </ScrollView>
+      <ThemedView style={styles.contentContainer}>
+        <ThemedView style={styles.titleContainer}>
+          <ThemedText type="title">Meu Pedal</ThemedText>
+          <Bicycle />
         </ThemedView>
-      )}
+        <ThemedView style={styles.stepContainer}>
+          <ThemedText type="subtitle">Aqui você pode registrar seus pedais de forma rápida e fácil, sem precisar de internet.</ThemedText>
+          <ThemedText>Acompanhe sua evolução e veja o quanto você já pedalou!</ThemedText>
+        </ThemedView>
+        <ThemedView style={styles.stepContainer}>
+          <ThemedText type="subtitle">Comece agora:</ThemedText>
+          <ThemedView style={styles.buttonContainer}>
+            <AddTrainingButton onPress={handleAddTraining} />
+          </ThemedView>
+        </ThemedView>
+
+        {trainings.length > 0 && (
+          <ThemedView style={styles.trainingsContainer}>
+            <ThemedText type="subtitle" style={styles.trainingsTitle}>Seus Treinos</ThemedText>
+            <View style={styles.trainingsGrid}>
+              {trainings.map((training, index) => (
+                <TrainingCard
+                  key={index}
+                  date={training.date}
+                  distance={training.distance}
+                  time={training.time}
+                  notes={training.notes}
+                  onDelete={() => handleDeleteTraining(index)}
+                />
+              ))}
+            </View>
+          </ThemedView>
+        )}
+      </ThemedView>
     </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  contentContainer: {
+    flex: 1,
+    paddingHorizontal: 16,
+    ...Platform.select({
+      web: {
+        maxWidth: 1200,
+        marginHorizontal: 'auto',
+      },
+    }),
+  },
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+    marginBottom: 24,
   },
   stepContainer: {
     gap: 8,
-    marginBottom: 8,
+    marginBottom: 24,
+  },
+  buttonContainer: {
+    ...Platform.select({
+      web: {
+        maxWidth: 400,
+        alignSelf: 'center',
+      },
+    }),
   },
   headerImage: {
     height: 200,
-    width: 300,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    opacity: 0.8,
+    width: '100%',
     resizeMode: 'contain',
     alignSelf: 'center',
-    marginTop: 0,
   },
   trainingsContainer: {
     marginTop: 20,
+    width: '100%',
   },
   trainingsTitle: {
     marginBottom: 12,
   },
-  trainingsList: {
-    maxHeight: 400,
+  trainingsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 16,
+    justifyContent: 'flex-start',
+    ...Platform.select({
+      web: {
+        maxWidth: 1200,
+        marginHorizontal: 'auto',
+      },
+    }),
   },
 });
