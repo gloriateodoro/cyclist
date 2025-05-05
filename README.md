@@ -9,6 +9,7 @@
 - Total de quilômetros pedalados
 - Armazenamento local com AsyncStorage
 - Interface responsiva com modo escuro
+- Explorar eventos de ciclismo acontecendo em toda a América Latina
 
 ## 🛠️ Tecnologias
 - [React Native](https://reactnative.dev/)
