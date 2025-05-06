@@ -21,10 +21,8 @@ export function TrainingForm({ onSubmit }: TrainingFormProps) {
   const [notes, setNotes] = useState('');
 
   const handleDateChange = (text: string) => {
-    // Remove todos os caracteres não numéricos
     const cleaned = text.replace(/\D/g, '');
     
-    // Aplica a máscara DD/MM/AAAA
     let formatted = '';
     if (cleaned.length > 0) {
       formatted = cleaned.slice(0, 2);

@@ -10,8 +10,8 @@
     "web": "expo start --web",
     "test": "jest --watchAll",
     "lint": "expo lint",
-    "build": "expo export:web",
-    "deploy": "gh-pages -d web-build"
+    "build": "expo export",
+    "deploy": "gh-pages -d dist"
   },
   "jest": {
     "preset": "jest-expo"

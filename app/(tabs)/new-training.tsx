@@ -15,20 +15,20 @@ export default function NewTrainingScreen() {
     notes: string;
   }) => {
     try {
-      // Carrega os treinos existentes
+      // Load existing trainings
       const storedTrainings = await AsyncStorage.getItem('trainings');
       const trainings = storedTrainings ? JSON.parse(storedTrainings) : [];
       
-      // Adiciona o novo treino
+      // Add new training
       trainings.push(data);
       
-      // Salva os treinos atualizados
+      // Save updated trainings
       await AsyncStorage.setItem('trainings', JSON.stringify(trainings));
       
-      // Volta para a tela inicial
+      // Go back to initial screen
       router.back();
     } catch (error) {
-      console.error('Erro ao salvar treino:', error);
+      console.error('Error saving training:', error);
     }
   };
 
